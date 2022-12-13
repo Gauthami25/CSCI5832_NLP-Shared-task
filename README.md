@@ -16,3 +16,45 @@ Some entities are extracted from Preamble of the judgements and some from judgem
 ![](images/img1.png)
 ![](images/img2.png)
 ![](images/img3.png)
+
+**What is the approach to building custom Named entity Recognizer specific to a domain?**
+At its core, entity recognition systems have two steps:
+1.	Detecting the entities in text 
+2.	Categorizing the entities into named classes
+
+In order to build a custom legal domain named entity recognizer, we plan on employing Spacy.
+
+**Why spaCy?**
+SpaCy has a large contribution to the adoption of NLP in the industry as a free, open-source python library. It is designed to handle a large volume of text data and to draw insights by understanding text and it is also suited for production use. It can be used to build Information Extraction(IE) or Natural language understanding(NLU) systems or to pre-process text for deep learning use cases. SpaCy supports tokenization, part of speech(POS) tagging, dependency parsing, and many others NLP tasks. spaCy has pre-trained models for a ton of use cases, for ex. Named Entity Recognition, but based on the domain in which the model is used, it might benefit from re training and fine tuning.
+
+When we use nlp (spacy model object) on some text, spaCy first tokenizes the text to produce a `Doc` object, which is then processed in the next stages in the pipeline. The pipeline used by the default models consists of a tagger stage, a parser stage, and an entity recognizer(ner) stage. Each pipeline component processes the `Doc` object and then passed it on to the next component/stage.
+
+
+In order to train a custom Named entity recognizer using spaCy we need to do the following:
+
+•	Training Data Preparation(examples with their labels)
+•	Conversion of data to .spacy format
+•	Create config file in order to train the model
+•	Update the config file with required hyper-parameters
+•	Run the Training
+
+A model is trained in an iterative process, in which the model’s predictions are compared against the labels(ground truth) in order to compute the gradient of the loss. The gradient of the loss is then used to update the model weights through the backpropagation algorithm. The gradients indicate how much the weight values should be adjusted so that the model’s predictions become more similar or closer to the provided labels over time.
+
+**Training Data Preparation:**
+Preprocessing raw Json files, extracting required text, entities and start, end location from list of dictionaries.
+
+**Conversion of data to .spacy format**
+To convert data to spacy format, we need to create a DocBin object which will store the data. We will then iterate through our data and add the example and the entity label to the DocBin object and save the object to .spacy file
+
+**Creating a config file**
+We can use an easy-to-use widget on the web to create a basic boiler plate base_config file with all the basic parameters prefilled.
+On the Config page, we can select `ner` as components and hardware based on system availability, and we can also select to optimize for efficiency or accuracy. All these choices will impact the choice of the architecture, pretrained weights, and the hyperparameters.
+
+Once the ner is chosen the spaCy pipeline will have 'tok2vec' and ‘ner' in it’s pipeline.
+
+**tok2vec**: The tok2vec layer is a machine learning component that learns how to produce suitable (dynamic) vectors for tokens. It does this by looking at lexical attributes of the token but may also include the static vectors of the token. This component is generally not used by itself, but is part of another component, such as an NER. It will be the first layer of the NER model, and it can be trained as part of training the NER, to produce vectors that are suitable for your NER task.
+
+
+**Why use tok2vec?**
+Embedded word representations, also known as “word vectors”, are now one of the most widely used natural language processing technologies. Word embeddings let you treat individual words as related units of meaning, rather than entirely distinct IDs. However, most NLP problems require understanding of longer spans of text, not just individual words. There’s now a simple and flexible solution that is achieving excellent performance on a wide range of problems. After embedding the text into a sequence of vectors, bidirectional RNNs are used to encode the vectors into a sentence matrix. The rows of this matrix can be understood as token vectors — they are sensitive to the sentential context of the token. The final piece of the puzzle is called an attention mechanism. This lets you reduce the sentence matrix down to a sentence vector, ready for prediction. 
+
