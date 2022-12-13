@@ -85,7 +85,7 @@ Finally, hyper parameters can be tuned in order to improve the performance
 - Convert both the datasets into DocBin spaCy objects
 - Train and Evaluate the Best model
 
-**Observation**: the best score for model trained this way was around 0.55**
+**Observation**: the best score for model trained this way was around 0.55
 
 ![](images/img6.png)
 ![](images/img7.png)
@@ -100,7 +100,7 @@ Finally, hyper parameters can be tuned in order to improve the performance
 - Convert both (train, dev) datasets into DocBin spaCy objects
 - Train and Evaluate the Best model
 
-**Observation**: This way the trained model performs much better with F score around 0.92**
+**Observation**: This way the trained model performs much better with F score around 0.92
 
 ![](images/img8.png)
 
