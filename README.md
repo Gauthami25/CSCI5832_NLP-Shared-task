@@ -13,4 +13,4 @@ Named Entities Recognition is a frequently researched issue in Natural Language 
 
 Some entities are extracted from Preamble of the judgements and some from judgement text. Preamble of judgment contains formatted metadata like names of parties, judges, lawyers, date, court etc. The text following preamble till the end of the judgment is called as the "judgment"
 
-
+![](images/img.png)
