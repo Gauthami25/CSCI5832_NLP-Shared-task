@@ -67,3 +67,34 @@ Embedded word representations, also known as “word vectors”, are now one of 
 ![](images/img4.png)
 ![](images/img5.png)
 
+**What is tok2seq component made up of?**
+
+1.	tok2vec model is made up of two subnetworks: one for embedding and one for encoding.
+-	**embed**: Embeds tokens into context-independent word vector representations (MultiHashEmbed: embedding layer that uses subword features, and a MaxoutWindowEncoder encoding layer consisting of a CNN and a layer-normalized maxout activation function.)
+-	**encode**: encodes context into the embeddings, using an architecture such as a CNN, BiLSTM or transformer (MaxoutWindowEncoder)
+
+Finally, hyper parameters can be tuned in order to improve the performance
+
+**How does the custom ner perform?**
+
+**1st Approach:**
+
+- Read in judgement and preamble training data from 2 different json files
+- Combine judgement and preamble data and extract relevant data from the list of dictionaries: text, entities, start and end location of entities in the text.
+- Split data into train and dev set(0.8 split)
+- Convert both the datasets into DocBin spaCy objects
+- Train and Evaluate the Best model
+
+**Observation**: the best score for model trained this way was around 0.55
+
+**2nd Approach:**
+
+- Read in judgement and preamble training data from 2 different json files
+- Individually extract relevant data from the list of dictionaries: text, entities, start and end location of entities in the text from judgement and preamble datasets
+- Individually Split data into train and dev set(0.8 split)
+- Combine judgement and preamble data(train + dev) to create a combined train and dev set
+- Convert both (train, dev) datasets into DocBin spaCy objects
+- Train and Evaluate the Best model
+
+**Observation**: This way the trained model performs much better with F score around 0.92
+
