@@ -87,6 +87,10 @@ Finally, hyper parameters can be tuned in order to improve the performance
 
 **Observation**: the best score for model trained this way was around 0.55
 
+![](images/img6.png)
+![](images/img7.png)
+
+
 **2nd Approach:**
 
 - Read in judgement and preamble training data from 2 different json files
