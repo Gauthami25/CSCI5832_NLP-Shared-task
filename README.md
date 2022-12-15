@@ -3,6 +3,7 @@ Repository for NLP Shared task
 
 **Task 6B: LegalEval: Understanding Legal Texts**
 
+Link to the base model repository: [Here](https://github.com/Legal-NLP-EkStep/legal_NER)
 
 **Problem:**
 
